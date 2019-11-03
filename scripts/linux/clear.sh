@@ -1,12 +1,12 @@
 #!/bin/sh
 
-echo "Deletion of project $1"
+echo "Löschen des Projektes '$1'"
 
 if [ -d "./$1" ]; then
-  read -p "Soll das Projekt '$1' wirklich geloescht werden [Y/n]?" loesche
+  read -p "Soll das Projekt '$1' wirklich gelöscht werden [Y/n]?" loesche
   
   if [ $loesche == 'Y' ] || [ $loesche == 'y' ];	then
 	  rm -rf $1
-	  echo "Projekt '$1' wurde geloescht!"
+	  echo "Projekt '$1' wurde gelöscht!"
   fi	
 fi

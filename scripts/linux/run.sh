@@ -9,6 +9,6 @@ cd classes/main
 echo " Erzeuge $1.jar"
 jar -cvf ../../dist/$1.jar *
 
-echo "Fuehre $1 aus!"
+echo "Führe $1.jar aus!"
 cd ../..
-java -cp ./dist/Number.jar Number 1 10
+java -cp ./dist/chiemgau.jar Number 1 10
