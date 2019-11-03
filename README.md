@@ -115,13 +115,13 @@ Folgende Shell-Kommandos könnten hilfreich sein:
 - java
 - rm -rf
 
-Zum Beispiel:
+Zum Beispiel (muss nicht exakt so aussehen!):
 
 ```shell
 >./build.sh chiemgau
 
 Bauen und testen von 'chiemgau'
-Zunaechst alles in ./chiemgau/classes loeschen!
+Zunächst alles in ./chiemgau/classes löschen!
 Projekt 'chiemgau' wird gebaut...
 Projekt 'chiemgau' testen ...
 
@@ -130,19 +130,32 @@ Projekt 'chiemgau' testen ...
 ```
 
 >Note: **Verwenden Sie als Java- und Test-Klassen, die 2 Dateien im
-[src- Folder](./src). Ausserdem muessen Sie die 2 Jars aus dem
+[src- Folder](./src). Außerdem müssen Sie die 2 JARS aus dem
 [lib-Folder](./lib) ins Lib-Verzeichnis Ihres Projektes kopieren.
-Ansonsten koennen Sie den Unit-Test nicht ausfuehren!**
+Ansonsten können Sie den Unit-Test nicht ausführen!**
 
-Die Befehle zum kompilieren lauten:
+Leider ist das Zusammensetzen des Classpaths etwas kompliziert.Die Befehle zum kompilieren und erzeugen des Classpaths lauten:
 
-- `javac -d ./classes/main ./src/main/*;`
--  `javac -cp
-.:./classes/main/:./libs/junit-4.13-rc-1.jar:./libs/hamcrest-core-1.3.jar -d ./classes/test ./src/test/* `
+1. kompilieren der Number-Klassen
 
-Der Befehl zum Ausfuehren des Tests lautet:
-- `java -cp
-.:./classes/main/:./classes/test/:./libs/junit-4.13-rc-1.jar:./libs/hamcrest-core-1.3.jar org.junit.runner.JUnitCore NumberTest`
+`javac -d ./classes/main ./src/main/*;`
+
+2. kompilieren der Test-Klasse 
+
+```
+# classpath bauen
+pwd=$(pwd)
+cp=.:$pwd/classes/main/:$pwd/libs/junit-4.13-rc-1.jar
+javac --release 8 -cp "$cp" -d ./classes/test ./src/test/*
+```
+
+3. Ausführen des Tests
+
+```
+cp=$cp:$pwd/classes/test:$pwd/libs/hamcrest-core-1.3.jar
+echo "Classpath:$cp"
+java -cp "$cp" org.junit.runner.JUnitCore NumberTest
+```
 
 ## Aufgabe 4: JAR (=Java Archive) erstellen und ausführen
 
@@ -162,9 +175,9 @@ Zum Beispiel:
 >./run.sh chiemgau
 ```
 
-**Wie sieht die Asugabe aus?**
+**Wie sieht die Ausgabe aus?**
 
 Ach ja, die Befehle lauten hier:
 
 - Zum Bauen des JAR: `jar -cvf ../../dist/$1.jar *`
-- Zum Starten: `java -cp ./dist/Number.jar Number 1 10`
+- Zum Starten: `java -cp ./dist/$1.jar Number 1 10`
