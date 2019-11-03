@@ -29,6 +29,7 @@ und _etc_.
 
 Für das Skript benötigen Sie folgende Shell-Kommandos:
 
+- echo
 - cd
 - mkdir
 - if ... then
@@ -85,12 +86,13 @@ Folgende Shell-Kommandos könnten hilfreich sein:
 
 - rmdir
 - echo
-- ...
+- read
+- if ... then
 
 Zum Beispiel:
 
 ```shell
->./delete.sh chiemgau
+>./clear.sh chiemgau
 
 Soll das Projekt 'chiemgau' wirklich gelöscht werden [Y/n]?
 
@@ -98,10 +100,10 @@ Projekt wurde 'chiemgau' gelöscht!
 
 ```
 
-## Aufgabe 2: Build
+## Aufgabe 3: Build
 
 Als nächstes benötigen Sie ein Skript, dass ihr Java Projekt _baut_
-(sprich compiliert und testet).
+(sprich kompiliert und testet).
 
 Erstellen Sie ein Skript _build.sh_ (_build.bat_ für Windows), das ihre
 Java-Sourcen (inkl. Test-Dateien) kompiliert und die Tests aufruft und
@@ -111,13 +113,15 @@ Folgende Shell-Kommandos könnten hilfreich sein:
 
 - javac
 - java
-- ...
+- rm -rf
 
 Zum Beispiel:
 
 ```shell
 >./build.sh chiemgau
 
+Bauen und testen von 'chiemgau'
+Zunaechst alles in ./chiemgau/classes loeschen!
 Projekt 'chiemgau' wird gebaut...
 Projekt 'chiemgau' testen ...
 
@@ -125,11 +129,26 @@ Projekt 'chiemgau' testen ...
 
 ```
 
-## Aufgabe 3: Jar erstellen und ausführen
+>Note: **Verwenden Sie als Java- und Test-Klassen, die 2 Dateien im
+[src- Folder](./src). Ausserdem muessen Sie die 2 Jars aus dem
+[lib-Folder](./lib) ins Lib-Verzeichnis Ihres Projektes kopieren.
+Ansonsten koennen Sie den Unit-Test nicht ausfuehren!**
+
+Die Befehle zum kompilieren lauten:
+
+- `javac -d ./classes/main ./src/main/*;`
+-  `javac -cp
+.:./classes/main/:./libs/junit-4.13-rc-1.jar:./libs/hamcrest-core-1.3.jar -d ./classes/test ./src/test/* `
+
+Der Befehl zum Ausfuehren des Tests lautet:
+- `java -cp
+.:./classes/main/:./classes/test/:./libs/junit-4.13-rc-1.jar:./libs/hamcrest-core-1.3.jar org.junit.runner.JUnitCore NumberTest`
+
+## Aufgabe 4: JAR (=Java Archive) erstellen und ausführen
 
 Erstellen Sie ein Skript _run.sh_ (_run.bat_ für Windows), das ihre
 Java-Klassen in ein JAR Archive packt und dann mittels Java die
-_main()_-Methode aufruft
+_main()_-Methode aufruft.
 
 Folgende Shell-Kommandos könnten hilfreich sein:
 
@@ -142,3 +161,10 @@ Zum Beispiel:
 ```shell
 >./run.sh chiemgau
 ```
+
+**Wie sieht die Asugabe aus?**
+
+Ach ja, die Befehle lauten hier:
+
+- Zum Bauen des JAR: `jar -cvf ../../dist/$1.jar *`
+- Zum Starten: `java -cp ./dist/Number.jar Number 1 10`
