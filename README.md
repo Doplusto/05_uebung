@@ -181,3 +181,14 @@ Ach ja, die Befehle lauten hier:
 
 - Zum Bauen des JAR: `jar -cvf ../../dist/$1.jar *`
 - Zum Starten: `java -cp ./dist/$1.jar Number 1 10`
+
+## Aufgabe 5: Master Skript (Zusatzaufgabe)
+
+Schreiben Sie ein Skript, dass ein Menu bereitstellt, in dem die einzelnen Skripte angewählt werden können und dann ausgeführt werden.
+
+
+Folgende Shell-Kommandos könnten hilfreich sein:
+
+- switch
+- export
+- ...
