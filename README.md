@@ -60,7 +60,7 @@ dann wie folgt aus:
     - dist
     - docs
     - libs
-    - scr
+    - src
         - main
             - java
         - test
