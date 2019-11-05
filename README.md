@@ -131,7 +131,7 @@ Projekt 'chiemgau' testen ...
 
 >Note: **Verwenden Sie als Java- und Test-Klassen, die 2 Dateien im
 [src- Folder](./src). Außerdem müssen Sie die 2 JARS aus dem
-[lib-Folder](./lib) ins Lib-Verzeichnis Ihres Projektes kopieren.
+[lib-Folder](./libs) ins Lib-Verzeichnis Ihres Projektes kopieren.
 Ansonsten können Sie den Unit-Test nicht ausführen!**
 
 Leider ist das Zusammensetzen des Classpaths etwas kompliziert.Die Befehle zum kompilieren und erzeugen des Classpaths lauten:
