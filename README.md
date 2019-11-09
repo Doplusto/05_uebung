@@ -15,6 +15,7 @@ Kommandozeile (Command Line)/Shell zu steuern:
 1. Löschen eines Projektes
 
 > Note: **Die Lösung befindet sich im Branch _Musterlösung_.**
+> Note: **Dank an Tristan für die Windows Batch Files!**
 
 ## Aufgabe 1: Scaffolding
 
